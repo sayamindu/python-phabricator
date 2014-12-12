@@ -323,6 +323,12 @@ class Phabricator(Resource):
             'connectionID': response.connectionID
         }
 
+    def set_act_as_user(self, username):
+        self.conduit['actAsUser'] = username
+
+    def clear_act_as_user(self):
+        self.conduit.pop('actAsUser', None)
+
     def generate_hash(self, token):
         return hashlib.sha1(token + self.api.certificate).hexdigest()
 
